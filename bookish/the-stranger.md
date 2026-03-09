@@ -1,6 +1,5 @@
 ---
 title: The Stranger
-author: Nafid Enan
 ---
 
 ## Chapter 2

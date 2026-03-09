@@ -1,6 +1,5 @@
 ---
 title: Notes on Programming Things
-author: Nafid Enan
 ---
 
 C

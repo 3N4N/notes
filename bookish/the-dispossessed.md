@@ -1,6 +1,5 @@
 ---
 title: The Dispossessed
-author: Nafid Enan
 ---
 
 ## Preliminaries

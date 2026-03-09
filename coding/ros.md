@@ -1,6 +1,5 @@
 ---
 title: ROS and Gazebo
-author: Nafid Enan
 ---
 
 

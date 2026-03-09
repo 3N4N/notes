@@ -5,7 +5,7 @@ from collections import defaultdict
 folders = ["bookish/", "coding/", ]   # folders to scan
 pages = defaultdict(list)
 
-title_re = re.compile(r"<title>(.*?)</title>", re.IGNORECASE)
+title_re = re.compile(r"<title>Notes │ (.*?)</title>", re.IGNORECASE)
 
 def get_title(path):
     try:
@@ -45,13 +45,14 @@ body{
 }
 h1{
     border-bottom: 2px solid #ccc;
+    text-align: right;
 }
 h2{
     margin-top: 30px;
 }
 ul{
     list-style: none;
-    padding-left: 0;
+    padding-left: 30px;
 }
 li{
     margin: 6px 0;
@@ -69,11 +70,11 @@ a:hover{
 """)
 
     for folder in sorted(pages):
-        _folder = folder[folder.index("/")+1:]
-        print(_folder)
+        _folder = folder[folder.index("/")+1:].title()
+        if _folder[-1] == '/':
+            _folder = _folder[:-1]
         out.write(f"<h2>{_folder}</h2>\n<ul>\n")
         for title, path in sorted(pages[folder]):
-            print(path)
             _path = path[path.index('/')+1:]
             out.write(f'<li><a href="{_path}">{title}</a></li>\n')
         out.write("</ul>\n")

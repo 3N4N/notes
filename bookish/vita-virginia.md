@@ -1,6 +1,5 @@
 ---
 title: Love Letters between Vita and Virginia
-author: Nafid Enan
 ---
 
 
