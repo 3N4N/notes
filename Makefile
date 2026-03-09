@@ -15,6 +15,7 @@ HTML_FILES := $(patsubst $(SRC_DIR)/%.md,$(OUT_DIR)/%.html,$(MD_FILES))
 
 # default target
 all: $(HTML_FILES) index
+	cp -r css site
 
 # rule to build each html file
 $(OUT_DIR)/%.html: $(SRC_DIR)/%.md
