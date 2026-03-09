@@ -43,7 +43,7 @@ $endfor$
 <article>
 $if(title)$
 <header>
-  <a href=../../index.html>
+  <a href=../index.html>
 <h1 class="title">$title$</h1>
   </a>
 $if(subtitle)$
