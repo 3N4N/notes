@@ -22,7 +22,7 @@ $(OUT_DIR)/%.html: $(SRC_DIR)/%.md
 	mkdir -p $(dir $@)
 	pandoc $< -o $@ --toc --standalone -f markdown+smart --to=html5+smart \
 		--template templates/tufte \
-		$(foreach style,$(STYLES),--css ../../css/$(style))
+		$(foreach style,$(STYLES),--css ../css/$(style))
 		# -c ../css/pandoc.css -c ../css/tufte.css -c ../css/tufte-extra.css
 
 # generate index
