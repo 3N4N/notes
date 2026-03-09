@@ -1,5 +1,3 @@
-" nnoremap <Leader>p :silent exec "!pandoc % -o %:r.html -s -f markdown+smart --toc --to=html5 -c ../css/pandoc.css -c ../css/tufte.css"<CR>
-
 command! -nargs=0 PanThis 
       \ silent execute '!pandoc' expand('%')
       \ '-o' expand('%:r') . '.html'

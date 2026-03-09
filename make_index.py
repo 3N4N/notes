@@ -2,7 +2,8 @@ import os
 import re
 from collections import defaultdict
 
-folders = ["bookish/", "coding/", ]   # folders to scan
+# folders = ["bookish/", "coding/", ]   # folders to scan
+folders = ["site/"]
 pages = defaultdict(list)
 
 title_re = re.compile(r"<title>(.*?)</title>", re.IGNORECASE)
@@ -32,6 +33,10 @@ with open("index.html", "w", encoding="utf-8") as out:
 <head>
 <meta charset="utf-8">
 <title>Notes Index</title>
+<style type="text/css">code{white-space: pre;}</style>
+<link rel="stylesheet" href="./css/tufte.css">
+<link rel="stylesheet" href="./css/pandoc.css">
+<link rel="stylesheet" href="./css/tufte-extra.css">
 <style>
 body{
     font-family: sans-serif;
@@ -61,7 +66,7 @@ a:hover{
 </style>
 </head>
 <body>
-<h1>Index</h1>
+<h1>Notes Index</h1>
 """)
 
     for folder in sorted(pages):
