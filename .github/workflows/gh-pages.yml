@@ -12,16 +12,15 @@ jobs:
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
-          submodules: true  # Fetch Hugo themes (true OR recursive)
+          submodules: true
           fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
 
-      # - name: Setup Hugo
-      #   uses: peaceiris/actions-hugo@v2
-      #   with:
-      #     hugo-version: '0.147.9'
-      #     extended: true
+      - name: Install pandoc
+        uses: pandoc/actions/setup@v1
+        with:
+          version: 3.8
 
       - name: Build
         run: make
