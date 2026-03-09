@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Nafid Enan">
+  <title>ROS and Gazebo</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../../css/tufte.css">
+  <link rel="stylesheet" href="../../css/pandoc.css">
+  <link rel="stylesheet" href="../../css/tufte-extra.css">
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<article>
+<header>
+  <a href=../../index.html>
+<h1 class="title">ROS and Gazebo</h1>
+  </a>
+<p class="byline">Nafid Enan</p>
+</header>
+<nav id="TOC">
+<ul>
+<li><a href="#ros" id="toc-ros">ROS</a></li>
+<li><a href="#gazebo" id="toc-gazebo">Gazebo</a></li>
+<li><a href="#rl" id="toc-rl">RL</a></li>
+<li><a href="#progress-report" id="toc-progress-report">Progress
+Report</a></li>
+</ul>
+</nav>
+<h2 id="ros">ROS</h2>
+<ul>
+<li>Noetic does not work with “/” in frame id</li>
+<li>What’s the use of package.xml?</li>
+</ul>
+<h2 id="gazebo">Gazebo</h2>
+<ul>
+<li><code>gazebo/gazebo.hh</code> includes a core set of basic gazebo
+functions. It doesn’t include gazebo/physics/physics.hh,
+gazebo/rendering/rendering.hh, or gazebo/sensors/sensors.hh as those
+should be included on a case by case basis.</li>
+<li>All plugins must be in the gazebo namespace.</li>
+<li>Plugin types:
+<ul>
+<li>World</li>
+<li>Model</li>
+<li>Sensor</li>
+<li>System</li>
+<li>Visual</li>
+<li>GUI</li>
+</ul></li>
+</ul>
+<h2 id="rl">RL</h2>
+<ul>
+<li>1d action space: td3_1_61</li>
+</ul>
+<h2 id="progress-report">Progress Report</h2>
+<ul>
+<li>ROS basics
+<ul>
+<li>Pub Sub</li>
+<li>Custom Msg and Srv</li>
+<li>Record and Play with Bag</li>
+</ul></li>
+<li>Rviz
+<ul>
+<li>Markers</li>
+<li>Interactive markers</li>
+<li>Interactive marker server</li>
+<li>Plugins
+<ul>
+<li>Display (add func to visualize unsupported messages)</li>
+<li>How useful are rviz plugs</li>
+</ul></li>
+</ul></li>
+<li>Gazebo
+<ul>
+<li>Model editor</li>
+<li>Plugin (6 types)
+<ul>
+<li>Model</li>
+<li>World</li>
+<li>System</li>
+<li>How plugin of two types at once?</li>
+<li>How know which type to use?</li>
+</ul></li>
+</ul></li>
+<li>Random
+<ul>
+<li>catkin_install_python</li>
+<li>shit to catkin tools</li>
+<li>boost pointer casting and ADL</li>
+<li>debugging gz plugs w gdb</li>
+</ul></li>
+<li>Todo
+<ul>
+<li>Understand rqt graph</li>
+<li>Gz plugs and where to get docs</li>
+<li>Use case of rviz plugs</li>
+<li>Actual workflow of dbg gz plug</li>
+</ul></li>
+<li>point cloud</li>
+<li>ground segmentation</li>
+<li>lidar pc ground subtraction</li>
+<li>edge detection from extract image</li>
+</ul>
+</article>
+</body>
+</html>

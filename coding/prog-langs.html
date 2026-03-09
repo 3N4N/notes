@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Nafid Enan">
+  <title>Notes on Programming Things</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../../css/tufte.css">
+  <link rel="stylesheet" href="../../css/pandoc.css">
+  <link rel="stylesheet" href="../../css/tufte-extra.css">
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<article>
+<header>
+  <a href=../../index.html>
+<h1 class="title">Notes on Programming Things</h1>
+  </a>
+<p class="byline">Nafid Enan</p>
+</header>
+<nav id="TOC">
+<ul>
+<li><a href="#c" id="toc-c">C</a></li>
+<li><a href="#cxx" id="toc-cxx">CXX</a></li>
+<li><a href="#python" id="toc-python">Python</a></li>
+<li><a href="#rust" id="toc-rust">Rust</a></li>
+<li><a href="#ffi" id="toc-ffi">FFI</a></li>
+<li><a href="#comp-arch" id="toc-comp-arch">Comp Arch</a></li>
+<li><a href="#risc-v" id="toc-risc-v">RISC-V</a></li>
+<li><a href="#gdb" id="toc-gdb">gdb</a></li>
+<li><a href="#misc" id="toc-misc">MISC</a></li>
+</ul>
+</nav>
+<h2 id="c">C</h2>
+<ul>
+<li>Zero/empty initializer: “Type name = { 0 };”</li>
+<li>Designated initializer: “type_s name = { .field_name = value
+};”</li>
+</ul>
+<h2 id="cxx">CXX</h2>
+<ul>
+<li>Dynamic cast works only with polymorphic base.</li>
+<li>‘free’ing ’new Object’, instead of ’delete’ing will result in the
+destructor not being called.</li>
+<li>Defining a member function inside class definition makes it
+inline.</li>
+<li>Deleted function: <code>int func( int ) = delete;</code></li>
+<li>‘new’ calls constructor, ‘malloc’ doesnt</li>
+<li>‘delete’ calls destructor, ‘free’ doesnt</li>
+<li>‘#ifndef #define #endif’: include guard</li>
+<li>_REENTRANT flag causes compiler to use thread-safe (i.e.,
+re-entrant) versions of severals functions in the C library</li>
+<li>“-lpthread -D _REENTRANT” is the same as “-pthread”</li>
+<li>“std::optional<T>” exists</li>
+<li>“-Wl,” sends options to linker from gcc/g++</li>
+<li>List of functions in .a: “nm -g -C x.a”</li>
+<li>“#define”s in .cpp can clash, so do #undef at the end of .cpp</li>
+<li>Should “#define” 1st-party headers before std headers</li>
+</ul>
+<h2 id="python">Python</h2>
+<ul>
+<li>pandas has a ‘to_latex’ for tables/dataframes</li>
+<li>“=” copies references, not only the value (BEWARE)</li>
+<li>mylist.copy() copies only the first level of list, so doesn’t work
+for 2d lists</li>
+<li>“export CUDA_VISIBLE_DEVICES=3”</li>
+<li>Install pip: <code>python -m ensurepip</code></li>
+<li>If “pip install gym[box2d]” errors for swig: try “pip install
+swig”</li>
+<li>List comprehensions ([x for x in range(10)]) are more efficient</li>
+<li>PEP: python enhancement proposals</li>
+<li>“dunder” is “double under”: <strong>init</strong></li>
+<li>list1.extend(list2)</li>
+<li>dict1.update(dict2)</li>
+<li>{sys.executable} is the path to python executable</li>
+<li>$NO_COLOR disable colored outputs</li>
+<li>‘inspect’ module: class ‘getmember()’, method ‘signature()’</li>
+<li>pip.conf in venv/pip.conf (linux) or venv/pip.ini (windows)</li>
+<li>‘df.resample(“1min”)’</li>
+</ul>
+<h2 id="rust">Rust</h2>
+<ul>
+<li>CXX’s ‘erase()’ with iterator is Rust’s ‘retain()’.</li>
+<li>r#“he said,”Escape quotes in raw strings”“#</li>
+</ul>
+<h2 id="ffi">FFI</h2>
+<ul>
+<li>ABI: Application Binary Interface
+<ul>
+<li>Defines the func signature and types</li>
+<li>Much like an API but for linkers</li>
+</ul></li>
+</ul>
+<h2 id="comp-arch">Comp Arch</h2>
+<ul>
+<li>ISA architectures
+<ul>
+<li>Stack</li>
+<li>Accumulator</li>
+<li>Register-Memory (ours, probly)
+<ul>
+<li>arithmetic instructions can use regs/mems</li>
+</ul></li>
+<li>Load-Store
+<ul>
+<li>arithmetic instructions can only use regs</li>
+<li>cant do ‘add x1, x2, x3’</li>
+<li>cant do ‘add x1, x2, 40(x3)’</li>
+<li>-ve more instructions</li>
+<li>+ve fast implementation</li>
+<li>risc-v is load-store</li>
+</ul></li>
+</ul></li>
+<li>5 stage pipeline
+<ul>
+<li>IF
+<ul>
+<li>Fetch instruction from memory</li>
+<li>PC += 4</li>
+</ul></li>
+<li>ID
+<ul>
+<li>decode instr</li>
+<li>read source regs (rs1, rs2)</li>
+</ul></li>
+<li>Ex
+<ul>
+<li>ALU computation</li>
+<li>addr computation for load/store</li>
+<li>compare regs &amp; compute branching targets</li>
+</ul></li>
+<li>Mem
+<ul>
+<li>mem access to/from data cache</li>
+<li>load reads; store writes</li>
+</ul></li>
+<li>WB
+<ul>
+<li>branching, store –&gt; NOP</li>
+</ul></li>
+</ul></li>
+<li>FORWARDING path to avoid data hazard (RAW)</li>
+<li>data depency != data hazard</li>
+</ul>
+<h2 id="risc-v">RISC-V</h2>
+<ul>
+<li>ISA: Instruction Set Architecture</li>
+<li>Total registers: 32</li>
+<li>Instructions length: 32 bits</li>
+<li>Base ISA fixed</li>
+<li>Extensions possible</li>
+<li>Available extensions
+<ul>
+<li>I: integer</li>
+<li>M: multiply, division</li>
+<li>F: floating-point</li>
+<li>C: compressed (&lt;32bit instructions)</li>
+<li>V: vector</li>
+</ul></li>
+<li>Instructions formats: R, I, S, B, U, J</li>
+</ul>
+<h2 id="gdb">gdb</h2>
+<ul>
+<li>C-x s: single key mode</li>
+<li>follow-fork-mode</li>
+<li>detach-on-fork</li>
+</ul>
+<h2 id="misc">MISC</h2>
+<ul>
+<li>prefix sum: output[i] = input[0] + input[1] + … + input[i]</li>
+<li>GNU make escape ‘<span
+class="math inline">′<em>w</em><em>i</em><em>t</em><em>h</em><em>a</em><sup>′</sup></span>’,
+not a backslash</li>
+<li>GNU make runs each command in a subshell</li>
+<li>GNU make can do “export VAR=value”</li>
+<li>GNU make “command too long”: redirect params into a file and then
+read params from file when running the command</li>
+</ul>
+</article>
+</body>
+</html>
