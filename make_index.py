@@ -33,9 +33,9 @@ with open("site/index.html", "w", encoding="utf-8") as out:
 <meta charset="utf-8">
 <title>Notes Index</title>
 <style type="text/css">code{white-space: pre;}</style>
-<link rel="stylesheet" href="../css/tufte.css">
-<link rel="stylesheet" href="../css/pandoc.css">
-<link rel="stylesheet" href="../css/tufte-extra.css">
+<link rel="stylesheet" href="./css/tufte.css">
+<link rel="stylesheet" href="./css/pandoc.css">
+<link rel="stylesheet" href="./css/tufte-extra.css">
 <style>
 body{
     font-family: sans-serif;
